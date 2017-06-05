@@ -53,5 +53,4 @@ while 1:
     for host in hosts:
         s.connect((host, TCP_PORT))
         s.send(MESSAGE)
-
-s.close()
+        s.close()
