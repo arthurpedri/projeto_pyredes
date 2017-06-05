@@ -59,7 +59,7 @@ while 1:
             hosts.remove(host)
             for remaining in hosts:
                 s.connect_ex((remaining, TCP_PORT))
-                s.send(m)
+                s.send(m, s.MSG_OOB)
                 s.close()
             break;
         s.send(MESSAGE)
