@@ -18,10 +18,10 @@ def listener(n, id):
 
     while 1:
         conn, addr = s.accept()
-        print id, ': Connection address:', addr
+        # print id, ': Connection address:', addr
         data = conn.recv(BUFFER_SIZE)
         # if not data: break
-        print id, ": received data:", data
+        print id, " : received data:", data
         conn.close()
 
 
@@ -45,9 +45,8 @@ t.start()
 # TCP_IP = '127.0.0.1'
 TCP_PORT = 5005
 BUFFER_SIZE = 1024
-MESSAGE = "Heartbeat"+ID
+MESSAGE = "Heartbeat from "+ID
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 time.sleep(5)
 while 1:
     for host in hosts:
