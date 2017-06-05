@@ -53,7 +53,7 @@ while 1:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         time.sleep(1)
 
-        if not s.connect((host, TCP_PORT)):
+        if s.connect_ex((host, TCP_PORT)):
             hosts.remove(host)
             break;
         s.send(MESSAGE)
