@@ -24,7 +24,6 @@ def listener(n, id):
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((TCP_IP, TCP_PORT))
-    time.sleep(5)
     s.listen(int(n))
 
     while 1:
