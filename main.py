@@ -21,7 +21,7 @@ def listener(n, id):
         # print id, ': Connection address:', addr
         data = conn.recv(BUFFER_SIZE)
         # if not data: break
-        print id, " : received data:", data
+        print id, ": received data:", data
         conn.close()
 
 
@@ -54,7 +54,12 @@ while 1:
         time.sleep(1)
 
         if s.connect_ex((host, TCP_PORT)):
+            print host, " Desconectado"
             hosts.remove(host)
+            for remaining in hosts:
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                s.send(host + "Caiu", socket.MSG_OOB)
+                s.close()
             break;
         s.send(MESSAGE)
         s.close()
