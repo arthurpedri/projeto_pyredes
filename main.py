@@ -57,7 +57,7 @@ BUFFER_SIZE = 1024
 MESSAGE = "Heartbeat from "+ID
 
 time.sleep(5)
-##ELEIÇÃO
+##ELEICAO
 
 ELEICAO = "ESTADO DE ELEICAO MSG DE " + ID
 for host in hosts: # Percorre todos os merchants para saber quem realmente está ativo
