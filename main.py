@@ -72,7 +72,7 @@ while 1:
             if int (host.id) == int (lider): # ajustes para quando o host desconectado foi o lider
                 hosts.remove(host) # remove o desconectado da lista de hosts
                 lider = novoLider(hosts, ID) # chama a funcao para definir o novo lider
-                mLider = "Novo lider e: " + str(lider) + " MSG DE: " + ID # prepara a mensagem informando quem e o novo lider
+                mLider = "Novo lider e: " + str(lider) + " MSG DE: " +ID # prepara a mensagem informando quem e o novo lider
                 for remaining in hosts: # manda a mensagem informando quem e o novo lider
                     s.connect_ex((remaining.name, TCP_PORT))
                     s.send(mLider, socket.MSG_OOB)
