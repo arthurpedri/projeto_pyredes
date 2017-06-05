@@ -52,6 +52,9 @@ while 1:
     for host in hosts:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         time.sleep(1)
-        s.connect((host, TCP_PORT))
+
+        if not s.connect((host, TCP_PORT)):
+            hosts.remove(host)
+            break;
         s.send(MESSAGE)
         s.close()
