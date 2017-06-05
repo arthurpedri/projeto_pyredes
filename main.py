@@ -68,7 +68,7 @@ for host in hosts: # Percorre todos os merchants para saber quem realmente esta 
     hosts.remove(host)
 
 
-lider = novoLider(hosts, ID) # Com a lista atualizada, defini o novo líder
+lider = novoLider(hosts, ID) # Com a lista atualizada, defini o novo lider
 
 
 while 1:
