@@ -55,11 +55,11 @@ while 1:
 
         if s.connect_ex((host, TCP_PORT)):
             print host, " Desconectado"
+            m = host + "Caiu"
             hosts.remove(host)
             for remaining in hosts:
-                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                s.connect_ex((host, TCP_PORT)
-                s.send(host + "Caiu", socket.MSG_OOB)
+                s.connect_ex(remaining, TCP_PORT)
+                s.send(m)
                 s.close()
             break;
         s.send(MESSAGE)
