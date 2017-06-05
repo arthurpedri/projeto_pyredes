@@ -58,6 +58,7 @@ while 1:
             hosts.remove(host)
             for remaining in hosts:
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                s.connect_ex((host, TCP_PORT)
                 s.send(host + "Caiu", socket.MSG_OOB)
                 s.close()
             break;
