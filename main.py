@@ -20,7 +20,7 @@ def novoLider(hosts, id): # Funcao para determinar um lider novo com base na lis
 def listener(n, id):
     TCP_IP = ''
     TCP_PORT = 5005
-    BUFFER_SIZE = 1024  # Normally 1024, but we want fast response
+    BUFFER_SIZE = 1024
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((TCP_IP, TCP_PORT))
@@ -47,10 +47,6 @@ for i in range(3, len(sys.argv),2):
     h = Hosts(sys.argv[i], sys.argv[i + 1]) # adicionar um host a lista de hosts com seu nome e id
     hosts.append(h)
     print i
-lider = 0
-for host in hosts:
-    if host.id < lider:
-        lider = host.id
 
 t = Thread(target=listener, args=(n,ID,))
 t.start()
@@ -61,6 +57,20 @@ BUFFER_SIZE = 1024
 MESSAGE = "Heartbeat from "+ID
 
 time.sleep(5)
+##ELEIÇÃO
+
+ELEICAO = "ESTADO DE ELEICAO MSG DE " + ID
+for host in hosts: # Percorre todos os merchants para saber quem realmente está ativo
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    if not s.connect_ex((host.name, TCP_PORT)): # verificar se alguma conexao foi fechada
+        s.send(ELEICAO)
+        s.close()
+    hosts.remove(host)
+
+
+lider = novoLider(hosts, ID) # Com a lista atualizada, defini o novo líder
+
+
 while 1:
     for host in hosts:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -71,6 +81,14 @@ while 1:
             m = host.name + " Perdeu Conexao MSG DE: " + ID
             if int (host.id) == int (lider): # ajustes para quando o host desconectado foi o lider
                 hosts.remove(host) # remove o desconectado da lista de hosts
+
+                ##ELEICAO
+                for elect in hosts: # Percorre todos os merchants para saber quem realmente está ativo
+                    if not s.connect_ex((elect.name, TCP_PORT)): # verificar se alguma conexao foi fechada
+                        s.send(ELEICAO)
+                        s.close()
+                    hosts.remove(elect)
+
                 lider = novoLider(hosts, ID) # chama a funcao para definir o novo lider
                 mLider = "Novo lider e: " + str(lider) + " MSG DE: " +ID # prepara a mensagem informando quem e o novo lider
                 for remaining in hosts: # manda a mensagem informando quem e o novo lider
