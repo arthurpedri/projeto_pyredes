@@ -55,7 +55,7 @@ while 1:
 
         if s.connect_ex((host, TCP_PORT)):
             print host, " Desconectado"
-            m = host + "Caiu URGENTE"
+            m = host + " Caiu URGENTE from: " + ID
             hosts.remove(host)
             for remaining in hosts:
                 s.connect_ex((remaining, TCP_PORT))
