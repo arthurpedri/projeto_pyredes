@@ -68,11 +68,11 @@ while 1:
 
         if s.connect_ex((host.name, TCP_PORT)):
             print host.name, " Desconectado"
-            m = host.name + " Perdeu Conexao MSG DE: " + ID + " h " + host.id + " l " + str(lider)
+            m = host.name + " Perdeu Conexao MSG DE: " + ID
             if int (host.id) == int (lider):
                 hosts.remove(host)
                 lider = novoLider(hosts, ID)
-                mLider = "Novo lider e: " + str(lider) + " MSG DE: " + str(ID)
+                mLider = "Novo lider e: " + str(lider) + " MSG DE: " + ID
                 for remaining in hosts:
                     s.connect_ex((remaining.name, TCP_PORT))
                     s.send(mLider, socket.MSG_OOB)
