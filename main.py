@@ -68,8 +68,8 @@ while 1:
 
         if s.connect_ex((host.name, TCP_PORT)):
             print host.name, " Desconectado"
-            m = host.name + " Perdeu Conexao MSG DE: " + ID + " h " + host.id + " l " + lider
-            if host.id == lider:
+            m = host.name + " Perdeu Conexao MSG DE: " + ID + " h " + host.id + " l " + str(lider)
+            if int (host.id) == int (lider):
                 hosts.remove(host)
                 lider = novoLider(hosts)
                 mLider = "Novo lider e: " + lider + "MSG DE: " + ID
