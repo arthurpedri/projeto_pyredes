@@ -58,7 +58,7 @@ while 1:
             m = host + "Caiu"
             hosts.remove(host)
             for remaining in hosts:
-                s.connect_ex(remaining, TCP_PORT)
+                s.connect_ex((remaining, TCP_PORT))
                 s.send(m)
                 s.close()
             break;
