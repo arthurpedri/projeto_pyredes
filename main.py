@@ -10,10 +10,10 @@ class Hosts:
         self.name = name
         self.id = id
 
-def novoLider(hosts):
-    menor = hosts[0].id
+def novoLider(hosts, id):
+    menor = int(id)
     for host in hosts:
-        if host.id < menor:
+        if int(host.id) < int(menor):
             menor = host.id
     return menor
 
@@ -71,8 +71,8 @@ while 1:
             m = host.name + " Perdeu Conexao MSG DE: " + ID + " h " + host.id + " l " + str(lider)
             if int (host.id) == int (lider):
                 hosts.remove(host)
-                lider = novoLider(hosts)
-                mLider = "Novo lider e: " + lider + "MSG DE: " + ID
+                lider = novoLider(hosts, ID)
+                mLider = "Novo lider e: " + str(lider) + " MSG DE: " + str(ID)
                 for remaining in hosts:
                     s.connect_ex((remaining.name, TCP_PORT))
                     s.send(mLider, socket.MSG_OOB)
