@@ -83,7 +83,7 @@ while 1:
                 hosts.remove(host) # remove o desconectado da lista de hosts
 
                 ##ELEICAO
-                for elect in hosts: # Percorre todos os merchants para saber quem realmente está ativo
+                for elect in hosts: # Percorre todos os merchants para saber quem realmente esta ativo
                     if not s.connect_ex((elect.name, TCP_PORT)): # verificar se alguma conexao foi fechada
                         s.send(ELEICAO)
                         s.close()
