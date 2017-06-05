@@ -51,6 +51,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 time.sleep(1)
 while 1:
     for host in hosts:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((host, TCP_PORT))
         s.send(MESSAGE)
         s.close()
