@@ -51,6 +51,7 @@ time.sleep(5)
 while 1:
     for host in hosts:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_OOBINLINE, 1)
         time.sleep(1)
 
         if s.connect_ex((host, TCP_PORT)):
