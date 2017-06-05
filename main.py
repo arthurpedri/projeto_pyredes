@@ -13,6 +13,7 @@ def listener(n, id):
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((TCP_IP, TCP_PORT))
+    time.sleep(1)
     s.listen(int(n))
 
     while 1:
@@ -47,6 +48,7 @@ BUFFER_SIZE = 1024
 MESSAGE = "Heartbeat"+ID
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+time.sleep(1)
 while 1:
     for host in hosts:
         s.connect((host, TCP_PORT))
