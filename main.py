@@ -60,7 +60,7 @@ time.sleep(5)
 ##ELEICAO
 
 ELEICAO = "ESTADO DE ELEICAO MSG DE " + ID
-for host in hosts: # Percorre todos os merchants para saber quem realmente está ativo
+for host in hosts: # Percorre todos os merchants para saber quem realmente esta ativo
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     if not s.connect_ex((host.name, TCP_PORT)): # verificar se alguma conexao foi fechada
         s.send(ELEICAO)
