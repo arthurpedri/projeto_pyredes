@@ -64,7 +64,8 @@ for host in hosts: # Percorre todos os merchants para saber quem realmente esta 
     if not s.connect_ex((host.name, TCP_PORT)): # verificar se alguma conexao foi fechada
         s.send(ELEICAO)
         s.close()
-    hosts.remove(host)
+    else:
+        hosts.remove(host)
 
 
 lider = novoLider(hosts, ID) # Com a lista atualizada, defini o novo lider
@@ -86,7 +87,8 @@ while 1:
                     if not s.connect_ex((elect.name, TCP_PORT)): # verificar se alguma conexao foi fechada
                         s.send(ELEICAO)
                         s.close()
-                    hosts.remove(elect)
+                    else:
+                        hosts.remove(elect)
 
                 lider = novoLider(hosts, ID) # chama a funcao para definir o novo lider
                 mLider = "Novo lider e: " + str(lider) + " MSG DE: " +ID # prepara a mensagem informando quem e o novo lider
