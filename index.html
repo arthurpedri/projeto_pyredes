@@ -6,8 +6,7 @@
   <center><h1>Trabalho Prático de Redes 2</h1>
   <h4>Arthur Pedri Trevisol - GRR20141784</h4>
   <h4>Arthur Carvalho de Queiroz - GRR20141754</h4>
-  <h3>Arquivo com código fonte comentado</h3>
-  <a href="./main.py.txt">main.py.txt</a></center>
+  <h3>Arquivo com código fonte comentado: <a href="./main.py.txt">main.py.txt</a></h3></center>
   <h2>Relatório</h2>
   <h3>Entrada</h3>
   <p>A entrada é feita com os parâmetros "N ID(local) host1 id1 host2 id2 ... hostN-1 idN-1", onde N é o número de hosts que vão fazer parte da rede, ID(local) é o ID da máquina
@@ -20,10 +19,15 @@
   <h3>Lista de Hosts</h3>
   <p>O programa cria uma lista de objetos Host, que contém o nome e o id de cada host especificado nos parâmetros.</p>
   <h3>Verificação inicial dos hosts</h3>
-  <p>O programa vai verificar se todos os hosts especificados estão conectados, para então continuar a execução.</p>
+  <p>O programa vai verificar se todos os hosts especificados estão conectados, tentando estabeler uma conexão TCP, para então continuar a execução.</p>
   <h3>Definir lider</h3>
   <p>A função novoLider vai usar a lista atual de hosts e o próprio ID do host executando o programa para encontrar o menor ID e elegê-lo como líder.</p>
-  <h3></h3>
+  <h3>Sender</h3>
+  <p>No programa, o sender vai mandar heartbeats continuamente, exceto quando acontecer algum evento na rede. O while do sender vai esperar 1 segundo em cada iteração
+  para então mandar o heartbeat novamente ou detectar que alguma conexão foi fechada. Quando ele detectar que uma conexão foi fechada, o programa vai verificar se o host que teve sua conexão fechada era o líder. Nos casos onde o host era o líder,
+  o programa vai removê-lo da lista de hosts, verificar se os hosts restantes estão conectados e então chamar a função para eleger o novo líder. Quando o novo líder for encontrado
+  o programa vai enviar uma mensagem urgente informando o novo líder para todos os hosts restantes na rede. Nos casos onde o host desconectado não era o líder, o programa vai remover
+  o host desconectado da lista de hosts e informar os hosts restantes que ele foi desconectado.</p>
   <h2>Logs</h2>
 
 </body>
