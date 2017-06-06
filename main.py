@@ -101,6 +101,7 @@ while 1:
                 hosts.remove(host) # remove o desconectado da lista de hosts
 
                 ##ELEICAO
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 for elect in hosts: # Percorre todos os peers para saber quem realmente esta ativo
                     if not s.connect_ex((elect.name, TCP_PORT)): # verificar se alguma conexao foi fechada
                         s.send(ELEICAO)
