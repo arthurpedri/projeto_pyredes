@@ -68,7 +68,7 @@ while not ALL_UP:
             s.send(ELEICAO)
             s.close()
         else:
-            ALL_UP = True
+            ALL_UP = False
 
 lider = novoLider(hosts, ID) # Com a lista atualizada, defini o novo lider
 
