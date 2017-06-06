@@ -54,7 +54,7 @@ t.start()
 # TCP_IP = '127.0.0.1'
 TCP_PORT = 5005
 BUFFER_SIZE = 1024
-HEARTBEAT = "Heartbeat from "+ID
+HEARTBEAT = "Heartbeat DE "+ID
 
 time.sleep(5)
 ##ELEICAO
@@ -63,6 +63,7 @@ ELEICAO = "ESTADO DE ELEICAO MSG DE " + ID
 ALL_UP = False
 while not ALL_UP:
     ALL_UP = True
+    time.sleep(1)
     for host in hosts: # Percorre todos os peers para saber quem realmente esta ativo
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         if not s.connect_ex((host.name, TCP_PORT)): # verificar se alguma conexao foi fechada
@@ -94,7 +95,7 @@ while 1:
                         hosts.remove(elect)
 
                 lider = novoLider(hosts, ID) # chama a funcao para definir o novo lider
-                mLider = "Novo lider e: " + str(lider) + " MSG DE: " + ID # prepara a mensagem informando quem e o novo lider
+                mLider = "Novo lider e " + str(lider) + " MSG DE: " + ID # prepara a mensagem informando quem e o novo lider
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 for remaining in hosts: # manda a mensagem informando quem e o novo lider
                     s.connect_ex((remaining.name, TCP_PORT))
