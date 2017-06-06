@@ -32,7 +32,7 @@ def listener(n, id): # funcao aberta com thread para escutar a porta 5005
         # print id, ': Connection address:', addr
         data = conn.recv(BUFFER_SIZE) # coloca o conteudo da mensagem na variavel data
         # if not data: break
-        print datetime.datetime.utcnow(), "DE ", id, ": >> :", data # imprime os dados com formatacao para arquivo de log
+        print "[", id, "] [",datetime.datetime.utcnow().strftime("%c"), "]", " >> ", data # imprime os dados com formatacao para arquivo de log
         conn.close() # fecha a conexao tcp
 
 
@@ -54,7 +54,8 @@ t.start() # abre a thread
 # TCP_IP = '127.0.0.1'
 TCP_PORT = 5005
 BUFFER_SIZE = 1024
-HEARTBEAT = "Heartbeat from "+ID # determina a mensagem de heartbeat
+HEARTBEAT = "Heartbeat DE "+ID # determina a mensagem de heartbeat
+
 
 #time.sleep(5)
 ##ELEICAO
@@ -63,6 +64,7 @@ ELEICAO = "ESTADO DE ELEICAO MSG DE " + ID
 ALL_UP = False
 while not ALL_UP: # enquanto todos os hosts nao estiverem conectados o programa nao vai sair desse while
     ALL_UP = True
+    time.sleep(1)
     for host in hosts: # Percorre todos os peers para saber quem realmente esta ativo
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         if not s.connect_ex((host.name, TCP_PORT)): # verificar se alguma conexao foi fechada
@@ -94,7 +96,7 @@ while 1:
                         hosts.remove(elect) # se alguma outra conexao foi fechada o host sera removido da lista de hosts e ele nao sera candidato a lideranca
 
                 lider = novoLider(hosts, ID) # chama a funcao para definir o novo lider
-                mLider = "Novo lider e: " + str(lider) + " MSG DE: " + ID # prepara a mensagem informando quem e o novo lider
+                mLider = "Novo lider e: " + str(lider) + " MSG DE: " + str(ID) # prepara a mensagem informando quem e o novo lider
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 for remaining in hosts: # manda a mensagem informando quem e o novo lider
                     s.connect_ex((remaining.name, TCP_PORT))
