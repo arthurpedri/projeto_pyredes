@@ -101,8 +101,8 @@ while 1:
                 hosts.remove(host) # remove o desconectado da lista de hosts
 
                 ##ELEICAO
-                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 for elect in hosts: # Percorre todos os peers para saber quem realmente esta ativo
+                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                     if not s.connect_ex((elect.name, TCP_PORT)): # verificar se alguma conexao foi fechada
                         s.send(ELEICAO)
                         s.close()
@@ -111,8 +111,8 @@ while 1:
 
                 lider = novoLider(hosts, ID) # chama a funcao para definir o novo lider
                 mLider = "Novo lider e: " + str(lider) # prepara a mensagem informando quem e o novo lider
-                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 for remaining in hosts: # manda a mensagem informando quem e o novo lider
+                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                     s.connect_ex((remaining.name, TCP_PORT))
                     s.send(mLider, socket.MSG_OOB) # manda a mensagem informando o novo lider com tag de mensagem urgente
                     s.close()
