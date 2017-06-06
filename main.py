@@ -53,20 +53,22 @@ t.start()
 # TCP_IP = '127.0.0.1'
 TCP_PORT = 5005
 BUFFER_SIZE = 1024
-MESSAGE = "Heartbeat from "+ID
+HEARTBEAT = "Heartbeat from "+ID
 
 time.sleep(5)
 ##ELEICAO
 
 ELEICAO = "ESTADO DE ELEICAO MSG DE " + ID
-for host in hosts: # Percorre todos os merchants para saber quem realmente esta ativo
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    if not s.connect_ex((host.name, TCP_PORT)): # verificar se alguma conexao foi fechada
-        s.send(ELEICAO)
-        s.close()
-    else:
-        hosts.remove(host)
-
+ALL_UP = FALSE
+while not ALL_UP
+    ALL_UP = TRUE
+    for host in hosts: # Percorre todos os peers para saber quem realmente esta ativo
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        if not s.connect_ex((host.name, TCP_PORT)): # verificar se alguma conexao foi fechada
+            s.send(ELEICAO)
+            s.close()
+        else:
+            ALL_UP = FALSE
 
 lider = novoLider(hosts, ID) # Com a lista atualizada, defini o novo lider
 
@@ -83,7 +85,7 @@ while 1:
                 hosts.remove(host) # remove o desconectado da lista de hosts
 
                 ##ELEICAO
-                for elect in hosts: # Percorre todos os merchants para saber quem realmente esta ativo
+                for elect in hosts: # Percorre todos os peers para saber quem realmente esta ativo
                     if not s.connect_ex((elect.name, TCP_PORT)): # verificar se alguma conexao foi fechada
                         s.send(ELEICAO)
                         s.close()
@@ -92,6 +94,7 @@ while 1:
 
                 lider = novoLider(hosts, ID) # chama a funcao para definir o novo lider
                 mLider = "Novo lider e: " + str(lider) + " MSG DE: " +ID # prepara a mensagem informando quem e o novo lider
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 for remaining in hosts: # manda a mensagem informando quem e o novo lider
                     s.connect_ex((remaining.name, TCP_PORT))
                     s.send(mLider, socket.MSG_OOB)
@@ -103,5 +106,5 @@ while 1:
                     s.send(m)
                     s.close()
             break
-        s.send(MESSAGE)
+        s.send(HEARTBEAT)
         s.close()
