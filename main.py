@@ -92,6 +92,7 @@ while 1:
 
                 lider = novoLider(hosts, ID) # chama a funcao para definir o novo lider
                 mLider = "Novo lider e: " + str(lider) + " MSG DE: " +ID # prepara a mensagem informando quem e o novo lider
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 for remaining in hosts: # manda a mensagem informando quem e o novo lider
                     s.connect_ex((remaining.name, TCP_PORT))
                     s.send(mLider, socket.MSG_OOB)
