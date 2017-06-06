@@ -59,16 +59,16 @@ time.sleep(5)
 ##ELEICAO
 
 ELEICAO = "ESTADO DE ELEICAO MSG DE " + ID
-ALL_UP = FALSE
+ALL_UP = False
 while not ALL_UP:
-    ALL_UP = TRUE
+    ALL_UP = True
     for host in hosts: # Percorre todos os peers para saber quem realmente esta ativo
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         if not s.connect_ex((host.name, TCP_PORT)): # verificar se alguma conexao foi fechada
             s.send(ELEICAO)
             s.close()
         else:
-            ALL_UP = FALSE
+            ALL_UP = True
 
 lider = novoLider(hosts, ID) # Com a lista atualizada, defini o novo lider
 
