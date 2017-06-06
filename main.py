@@ -85,7 +85,7 @@ print "Todos hosts conectados"
 
 lider = novoLider(hosts, ID) # Com a lista atualizada, define o novo lider
 
-print "Lider ID: " + lider
+print "Lider ID: " + str(lider)
 
 print "Inicio do while do Sender"
 
