@@ -4,6 +4,7 @@ import socket
 import sys
 from threading import Thread
 import time
+import datetime
 
 class Hosts: # Classe para usar na lista de hosts, contendo nome e id
     def __init__(self, name, id):
@@ -31,12 +32,12 @@ def listener(n, id):
         # print id, ': Connection address:', addr
         data = conn.recv(BUFFER_SIZE)
         # if not data: break
-        print id, ": received data:", data
+        print datetime.datetime.utcnow(), "DE ", id, ": >> :", data
         conn.close()
 
 
 if len(sys.argv) < 2:
-    print "Parametros errados:<N> <ID(local)> <host> <id> <host> <id> ...."
+    print "Parametros errados:<N> <ID(local)> <host1> <id1> <host2> <id2> ... <hostN> <idN>"
     exit()
 
 n = sys.argv[1] # numero de hosts
@@ -59,16 +60,16 @@ time.sleep(5)
 ##ELEICAO
 
 ELEICAO = "ESTADO DE ELEICAO MSG DE " + ID
-ALL_UP = FALSE
-while not ALL_UP
-    ALL_UP = TRUE
+ALL_UP = False
+while not ALL_UP:
+    ALL_UP = True
     for host in hosts: # Percorre todos os peers para saber quem realmente esta ativo
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         if not s.connect_ex((host.name, TCP_PORT)): # verificar se alguma conexao foi fechada
             s.send(ELEICAO)
             s.close()
         else:
-            ALL_UP = FALSE
+            ALL_UP = False
 
 lider = novoLider(hosts, ID) # Com a lista atualizada, defini o novo lider
 
@@ -93,7 +94,7 @@ while 1:
                         hosts.remove(elect)
 
                 lider = novoLider(hosts, ID) # chama a funcao para definir o novo lider
-                mLider = "Novo lider e: " + str(lider) + " MSG DE: " +ID # prepara a mensagem informando quem e o novo lider
+                mLider = "Novo lider e: " + str(lider) + " MSG DE: " + ID # prepara a mensagem informando quem e o novo lider
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 for remaining in hosts: # manda a mensagem informando quem e o novo lider
                     s.connect_ex((remaining.name, TCP_PORT))
