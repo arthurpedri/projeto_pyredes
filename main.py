@@ -40,6 +40,13 @@ if len(sys.argv) < 2: # verificacao para facil demonstracao de uso do programa
     print "Parametros errados:<N> <ID(local)> <host1> <id1> <host2> <id2> ... <hostN> <idN>"
     exit()
 
+print "============================================================================="
+print "Inicio da execucao: programa que implementa peers sobre tcp."
+print "Arthur Pedri Trevisol GRR20141784 - Arthur Carvalho de Queiroz GRR20141754"
+print "REDES DE COMPUTADORES II"
+print "============================================================================="
+print
+
 n = sys.argv[1] # numero de hosts
 ID = sys.argv[2] # id do host local
 hosts = list() # lista de hosts fora o local
@@ -47,17 +54,18 @@ for i in range(3, len(sys.argv),2):
     h = Hosts(sys.argv[i], sys.argv[i + 1]) # adicionar um host a lista de hosts com seu nome e id
     hosts.append(h)
     #print i
+print "Lista de hosts criada"
 
 t = Thread(target=listener, args=(n,ID,)) # declara a thread que vai usar a funcao listener
 t.start() # abre a thread
 
-# TCP_IP = '127.0.0.1'
+print "Thread Listener Lançada"
+
 TCP_PORT = 5005
 BUFFER_SIZE = 1024
 HEARTBEAT = "Heartbeat DE "+ID # determina a mensagem de heartbeat
 
 
-#time.sleep(5)
 ##ELEICAO
 
 ELEICAO = "ESTADO DE ELEICAO MSG DE " + ID
@@ -73,8 +81,13 @@ while not ALL_UP: # enquanto todos os hosts nao estiverem conectados o programa 
         else:
             ALL_UP = False
 
+print "Todos hosts conectados"
+
 lider = novoLider(hosts, ID) # Com a lista atualizada, define o novo lider
 
+print "Lider ID: " + lider
+
+print "Início do while do Sender"
 
 while 1:
     for host in hosts:
@@ -96,7 +109,7 @@ while 1:
                         hosts.remove(elect) # se alguma outra conexao foi fechada o host sera removido da lista de hosts e ele nao sera candidato a lideranca
 
                 lider = novoLider(hosts, ID) # chama a funcao para definir o novo lider
-                mLider = "Novo lider e: " + str(lider) + " MSG DE: " + str(ID) # prepara a mensagem informando quem e o novo lider
+                mLider = "Novo lider e: " + str(lider) # prepara a mensagem informando quem e o novo lider
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 for remaining in hosts: # manda a mensagem informando quem e o novo lider
                     s.connect_ex((remaining.name, TCP_PORT))
