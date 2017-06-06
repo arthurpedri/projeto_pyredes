@@ -1,0 +1,21 @@
+=============================================================================
+Inicio da execucao: programa que implementa peers sobre tcp.
+Arthur Pedri Trevisol GRR20141784 - Arthur Carvalho de Queiroz GRR20141754
+REDES DE COMPUTADORES II
+=============================================================================
+
+Lista de hosts criada
+Thread Listener Lancada
+[ 0 ] [ 12:32:59 ]  >>  ESTADO DE ELEICAO MSG DE 2
+[ 0 ] [ 12:32:59 ]  >>  ESTADO DE ELEICAO MSG DE 1
+Todos hosts conectados
+Lider ID: 0
+Inicio do while do Sender
+[ 0 ] [ 12:32:59 ]  >>  ESTADO DE ELEICAO MSG DE 3
+[ 0 ] [ 12:33:00 ]  >>  Heartbeat DE 2
+[ 0 ] [ 12:33:00 ]  >>  Heartbeat DE 1
+[ 0 ] [ 12:33:00 ]  >>  Heartbeat DE 3
+[ 0 ] [ 12:33:03 ]  >>  Heartbeat DE 2
+[ 0 ] [ 12:33:03 ]  >>  Heartbeat DE 1
+[ 0 ] [ 12:33:03 ]  >>  Heartbeat DE 3
+^\Sair (imagem do núcleo gravada)

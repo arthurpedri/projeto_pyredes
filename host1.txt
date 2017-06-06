@@ -1,0 +1,38 @@
+=============================================================================
+Inicio da execucao: programa que implementa peers sobre tcp.
+Arthur Pedri Trevisol GRR20141784 - Arthur Carvalho de Queiroz GRR20141754
+REDES DE COMPUTADORES II
+=============================================================================
+
+Lista de hosts criada
+Thread Listener Lancada
+[ 1 ] [ 12:32:59 ]  >>  ESTADO DE ELEICAO MSG DE 2
+Todos hosts conectados
+Lider ID: 0
+Inicio do while do Sender
+[ 1 ] [ 12:32:59 ]  >>  ESTADO DE ELEICAO MSG DE 0
+[ 1 ] [ 12:32:59 ]  >>  ESTADO DE ELEICAO MSG DE 3
+[ 1 ] [ 12:33:00 ]  >>  Heartbeat DE 0
+[ 1 ] [ 12:33:01 ]  >>  Heartbeat DE 2
+[ 1 ] [ 12:33:01 ]  >>  Heartbeat DE 3
+[ 1 ] [ 12:33:03 ]  >>  Heartbeat DE 0
+[ 1 ] [ 12:33:04 ]  >>  Heartbeat DE 2
+[ 1 ] [ 12:33:04 ]  >>  Heartbeat DE 3
+[ 1 ] [ 12:33:06 ]  >>  ESTADO DE ELEICAO MSG DE 2
+[ 1 ] [ 12:33:06 ]  >>  Novo lider e: 1
+i18  Desconectado
+[ 1 ] [ 12:33:06 ]  >>  ESTADO DE ELEICAO MSG DE 3
+[ 1 ] [ 12:33:06 ]  >>  Novo lider e: 1
+[ 1 ] [ 12:33:07 ]  >>  Heartbeat DE 2
+[ 1 ] [ 12:33:07 ]  >>  Heartbeat DE 3
+[ 1 ] [ 12:33:09 ]  >>  Heartbeat DE 2
+[ 1 ] [ 12:33:09 ]  >>  Heartbeat DE 3
+[ 1 ] [ 12:33:11 ]  >>  Heartbeat DE 2
+[ 1 ] [ 12:33:11 ]  >>  Heartbeat DE 3
+[ 1 ] [ 12:33:12 ]  >>  i12 Perdeu Conexao MSG DE: 3
+i12  Desconectado
+[ 1 ] [ 12:33:13 ]  >>  Heartbeat DE 3
+[ 1 ] [ 12:33:14 ]  >>  Heartbeat DE 3
+[ 1 ] [ 12:33:15 ]  >>  Heartbeat DE 3
+[ 1 ] [ 12:33:16 ]  >>  Heartbeat DE 3
+^\Sair (imagem do núcleo gravada)
