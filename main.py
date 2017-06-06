@@ -59,7 +59,7 @@ print "Lista de hosts criada"
 t = Thread(target=listener, args=(n,ID,)) # declara a thread que vai usar a funcao listener
 t.start() # abre a thread
 
-print "Thread Listener Lançada"
+print "Thread Listener Lancada"
 
 TCP_PORT = 5005
 BUFFER_SIZE = 1024
@@ -87,7 +87,7 @@ lider = novoLider(hosts, ID) # Com a lista atualizada, define o novo lider
 
 print "Lider ID: " + lider
 
-print "Início do while do Sender"
+print "Inicio do while do Sender"
 
 while 1:
     for host in hosts:
