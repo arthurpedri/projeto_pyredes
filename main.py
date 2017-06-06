@@ -32,7 +32,7 @@ def listener(n, id):
         # print id, ': Connection address:', addr
         data = conn.recv(BUFFER_SIZE)
         # if not data: break
-        print "[",datetime.datetime.utcnow().strftime("%c"), "] DE ", id, " >> ", data
+        print "[", id, "] [",datetime.datetime.utcnow().strftime("%c"), "]", " >> ", data
         conn.close()
 
 
