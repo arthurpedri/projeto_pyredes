@@ -60,7 +60,7 @@ time.sleep(5)
 
 ELEICAO = "ESTADO DE ELEICAO MSG DE " + ID
 ALL_UP = FALSE
-while not ALL_UP
+while not ALL_UP:
     ALL_UP = TRUE
     for host in hosts: # Percorre todos os peers para saber quem realmente esta ativo
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
